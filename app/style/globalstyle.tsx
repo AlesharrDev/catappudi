@@ -7,6 +7,21 @@ const globalStyle = StyleSheet.create({
         backgroundColor: "#C99D79",
         
     },
+    homecat:{
+        flex: 1,
+        alignItems: "center",
+        padding: 30,
+        backgroundColor: "#C99D79",
+        width:'100%',
+        borderTopEndRadius:30,
+        borderTopStartRadius:30,
+    },
+    container2: {
+        flex: 1,
+        alignItems: "center",
+        backgroundColor: "#f2f2f2",
+        
+    },
     textwhite:{
         color:"white", 
         fontSize: 18,   
