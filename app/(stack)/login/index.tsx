@@ -2,20 +2,22 @@ import { Image, Text, TextInput, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import globalStyle from "@/app/style/globalstyle";
-
-import InputFormulario from "@/app/componets/InputFormulario";
 import { router } from "expo-router";
+import { useUserStore } from "@/app/store/userState";
 
 const LoginStack = () => {
-  const [Usuario, setUsuario] = React.useState("");
+  const [inputNombre, setInputNombre] = React.useState("");
+  const setNombre = useUserStore((state) => state.setNombre);
 
   const handleLogin = () => {
-    if (Usuario) {
-      router.push(`/perfil`);
+    if (inputNombre.trim()) {
+      setNombre(inputNombre.trim());
+      router.push('/home');
     } else {
-      router.push(`/login`);
+      router.push('/login');
     }
   };
+
   return (
     <SafeAreaProvider>
       <SafeAreaView
@@ -35,7 +37,13 @@ const LoginStack = () => {
           </Text>
         </View>
 
-        <TextInput placeholder="Ingrese su nombnre" style={[globalStyle.input,globalStyle.m20]} />
+        <TextInput 
+          placeholder="Ingrese su nombre" 
+          style={[globalStyle.input, globalStyle.m20]} 
+          value={inputNombre}
+          onChangeText={setInputNombre}
+          placeholderTextColor="#999"
+        />
         <TouchableOpacity
           style={globalStyle.buttonWellcome}
           onPress={handleLogin}
