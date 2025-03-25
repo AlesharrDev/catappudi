@@ -54,11 +54,11 @@ const Hometabs = () => {
         </ImageBackground>
         <Image
           source={require("@/assets/images/cathome2.png")}
-          style={{ width: 200, height: 100, marginBottom: 0 }} // Adjusted width and height
-          resizeMode="contain" // Ensures the image is not cropped
+          style={{ width: 200, height: 100, marginBottom: 0 }} 
+          resizeMode="contain" 
         />
         <View style={globalStyle.homecat}>
-          {/* Additional content can go here */}
+          <Text style={{color:'#f2f2f2',fontWeight:'bold',fontSize:18,textAlign:'left'}}>Mi estado Hoy</Text>
         </View>
       </SafeAreaView>
     </SafeAreaProvider>

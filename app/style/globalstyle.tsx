@@ -9,7 +9,7 @@ const globalStyle = StyleSheet.create({
     },
     homecat:{
         flex: 1,
-        alignItems: "center",
+        // alignItems: "center",
         padding: 30,
         backgroundColor: "#C99D79",
         width:'100%',
