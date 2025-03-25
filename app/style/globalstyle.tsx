@@ -3,15 +3,22 @@ const globalStyle = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        padding: 20,
-        backgroundColor: "white",
-        justifyContent: "center",
+        padding: 30,
+        backgroundColor: "#C99D79",
+        
+    },
+    textwhite:{
+        color:"white", 
+        fontSize: 18,   
     },
     h1: {
-        fontSize: 24,
+        fontSize: 28,
         fontWeight: "bold",
-        marginBottom: 10,
-        color: "#333",
+
+        color: "#f2f2f2",
+    },
+    m20:{
+        marginBottom:20
     },
     h2: {
         fontSize: 20,
@@ -27,12 +34,17 @@ const globalStyle = StyleSheet.create({
     },
     input: {
         height: 40,
-        borderColor: "#ccc",
-        borderWidth: 1,
-        borderRadius: 5,
+        backgroundColor: "#f2f2f2",
+        color: "black",
+        borderRadius: 10,
         paddingHorizontal: 10,
         fontSize: 14,
-        width: 170,
+        width: 200,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
     },
     button: {
         backgroundColor: "#007BFF",
@@ -42,6 +54,30 @@ const globalStyle = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         marginVertical:5,
+    },
+    buttonWellcome: {
+        backgroundColor: "#F2F2F2",
+        borderRadius: 20,
+        marginVertical:5,
+        display: 'flex',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        // Shadow property for Android
+        elevation: 5,
+    },
+    buttonTextw: {
+        color: "BLACK",
+        fontSize: 20,
+        fontWeight: "bold",
+        marginVertical: 15,
     },
     buttonText: {
         color: "white",
