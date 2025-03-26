@@ -37,15 +37,7 @@ const TabsLyout = () => {
         }}
       />
 
-      <Tabs.Screen
-        name="perfil/index"
-        options={{
-          title: "Perfil",
-          tabBarIcon: ({ color }) => (
-            <Ionicons size={26} name="person-circle" color={color} />
-          ), // Use Ionicons
-        }}
-      />
+    
       
     </Tabs>
   );

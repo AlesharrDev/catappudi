@@ -1,52 +1,67 @@
-import { View, Text, SafeAreaView, TouchableOpacity, TextInput } from "react-native";
+import {
+  Image,
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import React, { useState } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import globalStyle from "@/app/style/globalstyle";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Estado = () => {
   const [selectedMood, setSelectedMood] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleMoodSelect = (mood:any) => {
+  const handleMoodSelect = (mood: any) => {
     setSelectedMood(mood);
   };
 
   const saveState = async () => {
-    if (!selectedMood) {
-      alert("Por favor selecciona cómo te sientes");
-      return;
-    }
-
+    if (!selectedMood)return;
     try {
       // Get current date
       const date = new Date();
       const day = date.getDate();
       const monthNames = [
-        "enero", "febrero", "marzo", "abril", "mayo", "junio",
-        "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+        "enero",
+        "febrero",
+        "marzo",
+        "abril",
+        "mayo",
+        "junio",
+        "julio",
+        "agosto",
+        "septiembre",
+        "octubre",
+        "noviembre",
+        "diciembre",
       ];
       const month = monthNames[date.getMonth()];
       const year = date.getFullYear();
       const formattedDate = `${day} de ${month} del ${year}`;
 
-      // Create new state object
+      // crea el objeto para guardar
       const newState = {
         mood: selectedMood,
         message: message,
         date: formattedDate,
-        timestamp: date.getTime() // For sorting
+        timestamp: date.getTime(), // For sorting
       };
 
       // Get existing states or create empty array
-      const existingStatesJSON = await AsyncStorage.getItem('userStates');
-      const existingStates = existingStatesJSON ? JSON.parse(existingStatesJSON) : [];
+      const existingStatesJSON = await AsyncStorage.getItem("userStates");
+      const existingStates = existingStatesJSON
+        ? JSON.parse(existingStatesJSON)
+        : [];
 
       // Add new state and save
       existingStates.push(newState);
-      await AsyncStorage.setItem('userStates', JSON.stringify(existingStates));
+      await AsyncStorage.setItem("userStates", JSON.stringify(existingStates));
 
-      alert("Estado guardado correctamente");
+      alert("Guardado correctamente");
       setSelectedMood("");
       setMessage("");
     } catch (error) {
@@ -57,45 +72,117 @@ const Estado = () => {
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={[globalStyle.container,{display:'flex',justifyContent:'center'}]}>
+      <SafeAreaView
+        style={[
+          globalStyle.container,
+          { display: "flex", justifyContent: "center" },
+        ]}
+      >
         <Text style={globalStyle.h1}>Como estas?</Text>
-        <View style={{display:'flex',flexDirection:'row',gap:10,marginVertical:80}}>
-          <TouchableOpacity 
-            style={[{padding: 10, borderRadius: 5}, selectedMood === "Increible" ? {backgroundColor: '#4CAF50'} : {backgroundColor: '#e0e0e0'}]}
-            onPress={() => handleMoodSelect("Increible")}>
+        <View
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            gap: 10,
+            marginVertical: 80,
+          }}
+        >
+          <TouchableOpacity
+            style={[
+              { padding: 10, borderRadius: 10 },
+              selectedMood === "Increible"
+                ? { backgroundColor: "#4CAF50" }
+                : { backgroundColor: "#C99D79" },//cambie el color del boton
+            ]}
+            onPress={() => handleMoodSelect("Increible")}
+          >
+            <Image
+              source={require("@/assets/images/cat1.png")}
+              style={{ width: 54, height: 50, marginBottom: 0 }}
+              resizeMode="contain"
+            />
             <Text>Increible</Text>
           </TouchableOpacity>
-          <TouchableOpacity 
-            style={[{padding: 10, borderRadius: 5}, selectedMood === "Bien" ? {backgroundColor: '#8BC34A'} : {backgroundColor: '#e0e0e0'}]}
-            onPress={() => handleMoodSelect("Bien")}>
+          <TouchableOpacity
+            style={[
+              { padding: 10, borderRadius: 5 },
+              selectedMood === "Bien"
+                ? { backgroundColor: "#8BC34A" }
+                : { backgroundColor: "#C99D79" },
+            ]}
+            onPress={() => handleMoodSelect("Bien")}
+          >
+            <Image
+              source={require("@/assets/images/cat2.png")}
+              style={{ width: 54, height: 50, marginBottom: 0 }}
+              resizeMode="contain"
+            />
             <Text>Bien</Text>
           </TouchableOpacity>
-          <TouchableOpacity 
-            style={[{padding: 10, borderRadius: 5}, selectedMood === "Meh" ? {backgroundColor: '#FFC107'} : {backgroundColor: '#e0e0e0'}]}
-            onPress={() => handleMoodSelect("Meh")}>
+          <TouchableOpacity
+            style={[
+              { padding: 10, borderRadius: 5 },
+              selectedMood === "Meh"
+                ? { backgroundColor: "#FFC107" }
+                : { backgroundColor: "#C99D79" },
+            ]}
+            onPress={() => handleMoodSelect("Meh")}
+          >
+            <Image
+              source={require("@/assets/images/cat3.png")}
+              style={{ width: 54, height: 50, marginBottom: 0 }}
+              resizeMode="contain"
+            />
             <Text>Meh</Text>
           </TouchableOpacity>
-          <TouchableOpacity 
-            style={[{padding: 10, borderRadius: 5}, selectedMood === "Mal" ? {backgroundColor: '#FF9800'} : {backgroundColor: '#e0e0e0'}]}
-            onPress={() => handleMoodSelect("Mal")}>
+          <TouchableOpacity
+            style={[
+              { padding: 10, borderRadius: 5 },
+              selectedMood === "Mal"
+                ? { backgroundColor: "#FF9800" }
+                : { backgroundColor: "#C99D79" },
+            ]}
+            onPress={() => handleMoodSelect("Mal")}
+          >
+            <Image
+              source={require("@/assets/images/cat4.png")}
+              style={{ width: 54, height: 50, marginBottom: 0 }}
+              resizeMode="contain"
+            />
             <Text>Mal</Text>
           </TouchableOpacity>
-          <TouchableOpacity 
-            style={[{padding: 10, borderRadius: 5}, selectedMood === "Horrible" ? {backgroundColor: '#F44336'} : {backgroundColor: '#e0e0e0'}]}
-            onPress={() => handleMoodSelect("Horrible")}>
+          <TouchableOpacity
+            style={[
+              { padding: 10, borderRadius: 5 },
+              selectedMood === "Horrible"
+                ? { backgroundColor: "#F44336" }
+                : { backgroundColor: "#C99D79" },
+            ]}
+            onPress={() => handleMoodSelect("Horrible")}
+          >
+            <Image
+              source={require("@/assets/images/cat5.png")}
+              style={{ width: 54, height: 50, marginBottom: 0 }}
+              resizeMode="contain"
+            />
             <Text>Horrible</Text>
           </TouchableOpacity>
         </View>
+        <Text style={globalStyle.h2}>Describe la actividad que estas haciendo</Text>
         <TextInput
-          style={[globalStyle.input,{marginVertical:10,width:300,height:100}]}
+          style={[
+            globalStyle.input,
+            { marginVertical: 10, width: 300, height: 100 },
+          ]}
           placeholder="Escribe un mensaje"
           value={message}
           onChangeText={setMessage}
           multiline
         />
-        <TouchableOpacity 
+        <TouchableOpacity
           style={globalStyle.buttonWellcome}
-          onPress={saveState}>
+          onPress={saveState}
+        >
           <Text style={globalStyle.buttonTextw}>Guardar</Text>
         </TouchableOpacity>
       </SafeAreaView>

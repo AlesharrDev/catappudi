@@ -39,7 +39,7 @@ const globalStyle = StyleSheet.create({
         fontSize: 20,
         fontWeight: "600",
         marginBottom: 10,
-        color: "#555",
+        color: "white",
     },
     label: {
         marginTop: 5,

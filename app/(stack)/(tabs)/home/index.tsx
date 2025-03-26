@@ -172,7 +172,8 @@ const Hometabs = () => {
         </ImageBackground>
         <Image
           source={require("@/assets/images/cathome2.png")}
-          style={{ width: 284, height: 150, marginBottom: 0 }}
+          style={{  height: 100, marginBottom: 0 }}
+          resizeMode="contain"
         />
         <View style={[globalStyle.homecat, { flex: 1, padding: 20 }]}>
           <Text style={{ fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>
