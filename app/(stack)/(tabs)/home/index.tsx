@@ -70,6 +70,7 @@ const Hometabs = () => {
         />
         <View style={globalStyle.homecat}>
           <ScrollView >
+            {/* agregar lista de estados */}
             <FlatList
             
             />

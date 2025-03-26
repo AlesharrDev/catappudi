@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity, TextInput } from "react-native";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import globalStyle from "@/app/style/globalstyle";
@@ -10,7 +10,7 @@ const Estado = () => {
         <Text style={globalStyle.h1}>Como estas?</Text>
         <View style={{display:'flex',flexDirection:'row',gap:10,marginVertical:80}}>
         <TouchableOpacity>
-            <Text style={{color:'white'}}>Increible</Text>
+            <Text >Increible</Text>
           </TouchableOpacity>
           <TouchableOpacity>
             <Text >Bien</Text>
@@ -25,6 +25,10 @@ const Estado = () => {
             <Text >Horrible</Text>
           </TouchableOpacity>
         </View>
+        <TextInput
+        style={[globalStyle.input,{marginVertical:10,width:300,height:100}]}
+        placeholder="Escribe un mensaje"
+        />
         <TouchableOpacity style={globalStyle.buttonWellcome}>
           <Text style={globalStyle.buttonTextw}>Guardar</Text>
         </TouchableOpacity>
