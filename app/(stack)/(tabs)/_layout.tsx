@@ -21,7 +21,7 @@ const TabsLyout = () => {
       <Tabs.Screen
         name="home/index"
         options={{
-          title: "Home",
+          title: "Inicio",
           tabBarIcon: ({ color }) => (
             <Ionicons size={26} name="book" color={color} />
           ), // Use Ionicons
