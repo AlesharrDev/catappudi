@@ -78,7 +78,7 @@ const Estado = () => {
           { display: "flex", justifyContent: "center" },
         ]}
       >
-        <Text style={globalStyle.h1}>COMO TE SIENTES HOY?</Text>
+        <Text style={[globalStyle.h1,{color:'#6a3b4b'}]}>¿COMO TE SIENTES HOY?</Text>
         <View
           style={{
             display: "flex",

@@ -32,6 +32,7 @@ const globalStyle = StyleSheet.create({
 
         color: "#f2f2f2",
     },
+    monse:{},
     m20:{
         marginBottom:20
     },
