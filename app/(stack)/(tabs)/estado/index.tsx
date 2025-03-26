@@ -83,7 +83,7 @@ const Estado = () => {
           style={{
             display: "flex",
             flexDirection: "row",
-            gap: 10,
+            gap: 5,
             marginVertical: 80,
           }}
         >
@@ -168,23 +168,25 @@ const Estado = () => {
             <Text>Horrible</Text>
           </TouchableOpacity>
         </View>
-        <Text style={globalStyle.h2}>Describe la actividad que estas haciendo</Text>
+        <Text style={[globalStyle.h2,{textAlign:'center'}]}>Describe la actividad que estas haciendo</Text>
         <TextInput
           style={[
             globalStyle.input,
-            { marginVertical: 10, width: 300, height: 100 },
+            { height: 100,width:'90%' ,marginVertical:10},
           ]}
           placeholder="Escribe un mensaje"
           value={message}
           onChangeText={setMessage}
           multiline
         />
+        <View style={{width:'100%',paddingHorizontal:10}}>
         <TouchableOpacity
           style={globalStyle.buttonWellcome}
           onPress={saveState}
         >
           <Text style={globalStyle.buttonTextw}>Guardar</Text>
         </TouchableOpacity>
+        </View>
       </SafeAreaView>
     </SafeAreaProvider>
   );
