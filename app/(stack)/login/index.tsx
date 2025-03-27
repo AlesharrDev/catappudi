@@ -24,6 +24,9 @@ const LoginStack = () => {
         style={[globalStyle.container, { justifyContent: "space-between" }]}
       >
         <View style={[globalStyle.container, { alignItems:'center',justifyContent:'center', padding: 0 }]}>
+        <Text style={[globalStyle.h1, globalStyle.m20,{fontSize:40}]}>
+          Animotion
+          </Text>
           <Image
             source={require("@/assets/images/relax.png")}
             style={{ width: 150, height: 150, marginBottom: 30 }}

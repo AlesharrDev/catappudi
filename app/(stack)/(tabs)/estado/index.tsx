@@ -168,7 +168,7 @@ const Estado = () => {
             <Text>Horrible</Text>
           </TouchableOpacity>
         </View>
-        <Text style={[globalStyle.h2,{textAlign:'center'}]}>Describe la actividad que estas haciendo</Text>
+        <Text style={[globalStyle.h2,{textAlign:'center'}]}>Describa mas detalles</Text>
         <TextInput
           style={[
             globalStyle.input,
