@@ -3,7 +3,6 @@ import {
   View,
   Text,
   ImageBackground,
-  ScrollView,
   FlatList,
 } from "react-native";
 import React, { useEffect, useState, useCallback } from "react";
@@ -12,6 +11,7 @@ import globalStyle from "@/app/style/globalstyle";
 import { useUserStore } from "@/app/store/userState";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "expo-router";
+import StateItem from "@/app/components/StateItem";
 
 const Hometabs = () => {
   const [formattedDate, setFormattedDate] = useState("");
@@ -77,72 +77,6 @@ const Hometabs = () => {
     setFormattedDate(`${day} de ${month} del ${year}`);
   }, []);
 
-  // Render each state item
-  const renderStateItem = ({ item }: any) => {
-    // Define colors for different moods
-    const moodColors = {
-      Increible: "#4CAF50",
-      Bien: "#8BC34A",
-      Meh: "#FFC107",
-      Mal: "#FF9800",
-      Horrible: "#F44336",
-    };
-
-    // Format the time from timestamp
-    const formatTime = (timestamp: number) => {
-      const date = new Date(timestamp);
-      let hours = date.getHours();
-      const minutes = date.getMinutes();
-      const ampm = hours >= 12 ? "PM" : "AM";
-
-      hours = hours % 12;
-      hours = hours ? hours : 12; // the hour '0' should be '12'
-
-      const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
-
-      return `${hours}:${formattedMinutes} ${ampm}`;
-    };
-
-    const timeCreated = item.timestamp ? formatTime(item.timestamp) : "";
-
-    return (
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-          paddingHorizontal: 25,
-          paddingVertical: 10,
-          marginVertical: 8,
-          backgroundColor: "#f8f8f8",
-          borderRadius: 30,
-          borderLeftWidth: 5,
-          borderLeftColor:
-            moodColors[item.mood as keyof typeof moodColors] || "#6a3b4b",
-        }}
-      >
-        <View>
-          <Text style={{ fontSize: 12, color: "#666" }}>{item.date} </Text>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-              gap: 20,
-            }}
-          >
-            <Text style={{ fontWeight: "bold", fontSize: 16, marginBottom: 5 }}>
-              {item.mood}
-            </Text>
-            <Text style={{ fontSize: 12, color: "#666" }}>{timeCreated}</Text>
-          </View>
-        </View>
-        <Text style={{ marginBottom: 10, maxWidth: 150 }}>{item.message}</Text>
-      </View>
-    );
-  };
-
   return (
     <SafeAreaProvider>
       <SafeAreaView style={globalStyle.container2}>
@@ -182,7 +116,7 @@ const Hometabs = () => {
           {userStates.length > 0 ? (
             <FlatList
               data={userStates}
-              renderItem={renderStateItem}
+              renderItem={({ item }) => <StateItem item={item} />}
               keyExtractor={(item, index) => index.toString()}
               style={{ width: "100%" }}
             />
