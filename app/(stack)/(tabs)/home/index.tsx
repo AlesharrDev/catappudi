@@ -12,12 +12,26 @@ import { useUserStore } from "@/app/store/userState";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "expo-router";
 import StateItem from "@/app/components/StateItem";
+import { useDateStore } from "@/app/store/dateState";
 
 const Hometabs = () => {
-  const [formattedDate, setFormattedDate] = useState("");
   const [userStates, setUserStates] = useState([]);
   const nombre = useUserStore((state) => state.nombre);
   const loadNombre = useUserStore((state) => state.loadNombre);
+  const { formattedDate, updateFormattedDate } = useDateStore();
+
+  useEffect(() => {
+    const checkWelcomeShown = async () => {
+      const welcomeShown = await AsyncStorage.getItem("welcomeShown");
+      if (!welcomeShown) {
+        await AsyncStorage.setItem("welcomeShown", "true");
+      }
+    };
+    checkWelcomeShown();
+    loadNombre();
+    loadUserStates();
+    updateFormattedDate(); 
+  }, []);
 
   // Function to load states from AsyncStorage
   const loadUserStates = async () => {
@@ -25,7 +39,6 @@ const Hometabs = () => {
       const statesJSON = await AsyncStorage.getItem("userStates");
       if (statesJSON) {
         const states = JSON.parse(statesJSON);
-        // Sort by timestamp (newest first)
         states.sort((a: any, b: any) => b.timestamp - a.timestamp);
         setUserStates(states);
       }
@@ -47,34 +60,11 @@ const Hometabs = () => {
       const welcomeShown = await AsyncStorage.getItem("welcomeShown");
       if (!welcomeShown) {
         await AsyncStorage.setItem("welcomeShown", "true");
-        // Show welcome page logic here
       }
     };
-
     checkWelcomeShown();
     loadNombre();
-    loadUserStates(); // Load states on initial render
-
-    const date = new Date();
-    const day = date.getDate();
-    const monthNames = [
-      "enero",
-      "febrero",
-      "marzo",
-      "abril",
-      "mayo",
-      "junio",
-      "julio",
-      "agosto",
-      "septiembre",
-      "octubre",
-      "noviembre",
-      "diciembre",
-    ];
-    const month = monthNames[date.getMonth()];
-    const year = date.getFullYear();
-
-    setFormattedDate(`${day} de ${month} del ${year}`);
+    loadUserStates(); 
   }, []);
 
   return (
@@ -90,6 +80,7 @@ const Hometabs = () => {
         >
           {formattedDate}
         </Text>
+        
         <ImageBackground
           source={require("@/assets/images/dialogo.png")}
           style={{
